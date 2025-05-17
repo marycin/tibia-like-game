@@ -1,16 +1,22 @@
 import pygame
 import sys
+import os
 from models.player import Player
 
+ASSET_BACKGROUND = os.path.join("assets", "background.jpg")
 
 class Game:
-    def __init__(self, width=800, height=600, bg_color=(0, 255, 0)):
+    def __init__(self, width=800, height=600):
         self.__width = width
         self.__height = height
-        self.__bg_color = bg_color
 
         self.__screen = pygame.display.set_mode((self.__width, self.__height))
-        pygame.display.set_caption("Gra z modelem Player i Game")
+        pygame.display.set_caption("tibia-like-game")
+
+        # Poprawione ładowanie i skalowanie tła
+        self.__background_original = pygame.image.load(ASSET_BACKGROUND).convert()
+        self.__background = pygame.transform.scale(self.__background_original, (self.__width, self.__height))
+
 
         init_x = self.__width // 2
         init_y = self.__height // 2
@@ -43,6 +49,7 @@ class Game:
         self.__player.update()  # Dodano aktualizację broni
 
     def __draw(self):
-        self.__screen.fill(self.__bg_color)
+        # Poprawione rysowanie tła
+        self.__screen.blit(self.__background, (0, 0))
         self.__player.draw(self.__screen)
         pygame.display.update()

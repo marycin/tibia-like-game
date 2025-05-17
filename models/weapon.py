@@ -10,6 +10,7 @@ class Weapon:
         self.angle = 0
         self.attacking = False
         self.attack_timer = 0
+        self.facing = "right"
 
     def attack(self):
         self.attacking = True
@@ -26,7 +27,16 @@ class Weapon:
         # Obróć grafikę na podstawie aktualnego kąta
         self.image = pygame.transform.rotate(self.image_original, self.angle)
 
-    def draw(self, surface, x, y):
-        if self.image:
-            rect = self.image.get_rect(center=(x + 25, y + 25))  # dopasuj do gracza
-            surface.blit(self.image, rect)
+    def draw(self, surface, player_x, player_y, facing="right"):
+        self.facing = facing  # zapamiętaj kierunek
+
+        # Zmień pozycję miecza
+        offset_x = 60 if facing == "right" else -10
+        pos = (player_x + offset_x, player_y + 25)
+
+        # Flipnij miecz, jeśli gracz patrzy w lewo
+        image_to_draw = pygame.transform.flip(self.image, True, False) if facing == "right" else self.image
+
+        # Oblicz środek obróconego obrazu
+        rect = image_to_draw.get_rect(center=pos)
+        surface.blit(image_to_draw, rect)
