@@ -15,7 +15,7 @@ class Weapon:
     def attack(self):
         self.attacking = True
         self.angle = 30  # Przechylenie o 30 stopni
-        self.attack_timer = 20  # Liczba klatek, przez które atak trwa
+        self.attack_timer = 15  # Liczba klatek, przez które atak trwa
 
     def update(self):
         if self.attacking:

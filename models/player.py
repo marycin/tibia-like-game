@@ -28,10 +28,6 @@ class Player:
     def size(self):
         return self.__size
 
-    @property
-    def color(self):
-        return self.__color
-
     def _equip_default_weapon(self):
         return Weapon(name="Rapier", damage=10, range_=1, image_path=ASSET_WEAPON)
 
