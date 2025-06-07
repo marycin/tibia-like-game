@@ -1,4 +1,0 @@
-1. Create object model for player, item, game.
-2. Find libraries for python gaming development.
-3. Analyze and configure initial websocket connection.
-4. Create graphics for background, player and weapon (sword).
