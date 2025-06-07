@@ -63,3 +63,7 @@ class NetworkClient:
             "field": action.field
         }
         self.ws.send(json.dumps(data))
+
+    def send_raw(self, data):
+        if self.ws and self.ws.sock and self.ws.sock.connected:
+            self.ws.send(json.dumps(data))

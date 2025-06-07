@@ -55,3 +55,7 @@ class Player:
     def draw(self, surface):
         surface.blit(self.__image, (self.__x, self.__y))
         self.weapon.draw(surface, self.__x, self.__y, self.__facing)
+
+    def respawn(self, x, y):
+        self.__x = x
+        self.__y = y
